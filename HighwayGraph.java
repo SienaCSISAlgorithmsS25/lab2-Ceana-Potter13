@@ -222,5 +222,49 @@ public class HighwayGraph
         System.out.println(g);
 
 	// ADD CODE HERE TO COMPLETE LAB TASKS
+
+	// Pseudocode Variables
+        int north = 0;
+        int south = 0;
+        int east = 0;
+        int west = 0;
+        int shortest = 0;
+        int longest = 0;
+
+        // Iterate through points
+        for (int i = 1; i < g.vertices.length; i++) {
+            // Calculate north extreme
+            if (g.vertices[i].point.lat > g.vertices[north].point.lat) {
+                north = i;
+            }
+            // Calculate south extreme
+            if (g.vertices[i].point.lat < g.vertices[south].point.lat) {
+                south = i;
+            }
+            // Calculate east extreme
+            if (g.vertices[i].point.lng > g.vertices[east].point.lng) {
+                east = i;
+            }
+            // Calculate west extreme
+            if (g.vertices[i].point.lng < g.vertices[west].point.lng) {
+                west = i;
+            }
+            // Calculate shortest label
+            if (g.vertices[i].label.length() < g.vertices[shortest].label.length()) {
+                shortest = i;
+            }
+            // Calculate longest label
+            if (g.vertices[i].label.length() > g.vertices[longest].label.length()) {
+                longest = i;
+            }
+        }
+
+        // Display final results
+        System.out.println("North extreme: " + g.vertices[north].point + " " + g.vertices[north].label);
+        System.out.println("South extreme: " + g.vertices[south].point + " " + g.vertices[south].label);
+        System.out.println("East extreme: " + g.vertices[east].point + " " + g.vertices[east].label);
+        System.out.println("West extreme: " + g.vertices[west].point + " " + g.vertices[west].label);
+        System.out.println("Shortest vertex label: " + g.vertices[shortest].label);
+        System.out.println("Longest vertex label: " + g.vertices[longest].label);
     }
 }
