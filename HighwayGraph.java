@@ -266,5 +266,52 @@ public class HighwayGraph
         System.out.println("West extreme: " + g.vertices[west].point + " " + g.vertices[west].label);
         System.out.println("Shortest vertex label: " + g.vertices[shortest].label);
         System.out.println("Longest vertex label: " + g.vertices[longest].label);
+        
+	// Edge Pseudocode Variables
+        int shortestLabel = 0;
+        int longestLabel = 0;
+        int shortestEdge = 0;
+        int longestEdge = 0;
+        boolean foundEdge = false;
+
+        // Iterate through edges
+        for (int i = 0; i < g.vertices.length; i++) {
+            Edge e = g.vertices[i].head;
+
+            while (e != null) {
+                if (!foundEdge) {
+                    shortestLabel = i;
+                    longestLabel = i;
+                    shortestEdge = i;
+                    longestEdge = i;
+                    foundEdge = true;
+                }
+                // Calculate shortest label
+                if (e.label.length() < g.vertices[shortestLabel].head.label.length()) {
+                    shortestLabel = i;
+                }
+                // Calculate longest label
+                if (e.label.length() > g.vertices[longestLabel].head.label.length()) {
+                    longestLabel = i;
+                }
+                // Calculate shortest edge
+                if (e.length < g.vertices[shortestEdge].head.length) {
+                    shortestEdge = i;
+                }
+                // Calculate longest edge
+                if (e.length > g.vertices[longestEdge].head.length) {
+                    longestEdge = i;
+                }
+
+                e = e.next;
+            }
+        }
+
+        // Display final edge results
+        System.out.println();
+        System.out.println("Shortest edge label " + "| Length: " + g.vertices[shortestLabel].head.label.length() + " | Label: " + g.vertices[shortestLabel].head.label);
+        System.out.println("Longest edge label " + "| Length: " + g.vertices[longestLabel].head.label.length() + " | Label: " + g.vertices[longestLabel].head.label);
+        System.out.println("Shortest edge length: " + g.vertices[shortestEdge].head.length);
+        System.out.println("Longest edge length: " + g.vertices[longestEdge].head.length); // Hundredth place off
     }
 }
