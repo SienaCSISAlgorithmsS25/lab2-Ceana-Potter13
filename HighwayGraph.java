@@ -221,9 +221,9 @@ public class HighwayGraph
         // print summary of the graph
         System.out.println(g);
 
-	// ADD CODE HERE TO COMPLETE LAB TASKS
+        // ADD CODE HERE TO COMPLETE LAB TASKS
 
-	// Pseudocode Variables
+        // Pseudocode Variables
         int north = 0;
         int south = 0;
         int east = 0;
@@ -266,17 +266,19 @@ public class HighwayGraph
         System.out.println("West extreme: " + g.vertices[west].point + " " + g.vertices[west].label);
         System.out.println("Shortest vertex label: " + g.vertices[shortest].label);
         System.out.println("Longest vertex label: " + g.vertices[longest].label);
-        
-	// Edge Pseudocode Variables
+
+        // Edge Pseudocode Variables
         int shortestLabel = 0;
         int longestLabel = 0;
         int shortestEdge = 0;
         int longestEdge = 0;
         boolean foundEdge = false;
+        int edgeCount = 0; // Count edges
 
         // Iterate through edges
         for (int i = 0; i < g.vertices.length; i++) {
             Edge e = g.vertices[i].head;
+            edgeCount++; // Count this edge
 
             while (e != null) {
                 if (!foundEdge) {
@@ -313,5 +315,10 @@ public class HighwayGraph
         System.out.println("Longest edge label " + "| Length: " + g.vertices[longestLabel].head.label.length() + " | Label: " + g.vertices[longestLabel].head.label);
         System.out.println("Shortest edge length: " + g.vertices[shortestEdge].head.length);
         System.out.println("Longest edge length: " + g.vertices[longestEdge].head.length); // Hundredth place off
+        
+        // Display final edge count results
+        System.out.println();
+        System.out.println("Total edges counted: " + edgeCount);
+        System.out.println("Total edges in graph: " + g.numEdges);
     }
 }
